@@ -1,0 +1,28 @@
+machine:
+  node:
+    version: v6.1.0
+
+dependencies:
+  pre:
+    - git submodule init
+    - git submodule update --recursive
+    - npm install -g hexo-cli
+  override:
+    - npm install --dev
+
+test:
+  override:
+    - hexo generate
+
+general:
+  branches:
+    ignore:
+      - gh-pages
+
+deployment:
+  staging:
+    branch: master
+    commands:
+      - git config --global user.email "dcahsu@gmail.com"
+      - git config --global user.name "Dca"
+      - hexo deploy
